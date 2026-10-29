@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_dash/profile")({
   component: Profile,
 });
 
-const BADGES = [["trophy", "Top Helper"], ["star", "7-day Streak"], ["rocket", "Hackathon Hero"], ["book", "Bookworm"]];
+const BADGES: [string, string][] = [["trophy", "Top Helper"], ["star", "7-day Streak"], ["rocket", "Hackathon Hero"], ["book", "Bookworm"]];
 
 function Profile() {
   return (

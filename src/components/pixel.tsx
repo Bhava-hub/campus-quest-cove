@@ -32,7 +32,7 @@ export const ICONS: Record<string, string[]> = {
 };
 
 export function PixelIcon({ name, size = 20, className = "" }: { name: keyof typeof ICONS | string; size?: number; className?: string }) {
-  const grid = ICONS[name] ?? ICONS.star;
+  const grid = (ICONS[name] ?? ICONS["star"]) as string[];
   return (
     <svg width={size} height={size} viewBox="0 0 8 8" shapeRendering="crispEdges" className={`shrink-0 ${className}`} aria-hidden="true">
       {grid.flatMap((row, y) =>
@@ -49,8 +49,8 @@ const BG = ["var(--mint-soft)", "var(--orange-soft)", "oklch(0.92 0.03 250)", "o
 export function PixelAvatar({ seed, size = 36 }: { seed: string; size?: number }) {
   let h = 0;
   for (const ch of seed) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  const hair = HAIR[h % 4], shirt = SHIRT[(h >> 2) % 4], bg = BG[(h >> 4) % 4];
-  const skin = ["oklch(0.85 0.06 60)", "oklch(0.7 0.08 55)", "oklch(0.55 0.08 50)"][(h >> 6) % 3];
+  const hair = HAIR[h % 4]!, shirt = SHIRT[(h >> 2) % 4]!, bg = BG[(h >> 4) % 4]!;
+  const skin = ["oklch(0.85 0.06 60)", "oklch(0.7 0.08 55)", "oklch(0.55 0.08 50)"][(h >> 6) % 3]!;
   const long = (h >> 8) % 2 === 0;
   const px: [number, number, string][] = [];
   for (let x = 2; x < 8; x++) px.push([x, 1, hair]);
