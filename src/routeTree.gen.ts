@@ -10,33 +10,166 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashRouteImport } from './routes/_dash'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as DashActivityRouteImport } from './routes/_dash.activity'
+import { Route as DashCreateRouteImport } from './routes/_dash.create'
+import { Route as DashDashboardRouteImport } from './routes/_dash.dashboard'
+import { Route as DashProfileRouteImport } from './routes/_dash.profile'
+import { Route as DashSavedRouteImport } from './routes/_dash.saved'
+import { Route as DashQuestionsIndexRouteImport } from './routes/_dash.questions.index'
+import { Route as DashQuestionsIdRouteImport } from './routes/_dash.questions.$id'
+import { Route as DashTeammatesIndexRouteImport } from './routes/_dash.teammates.index'
+import { Route as DashTeammatesNewRouteImport } from './routes/_dash.teammates.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashRoute = DashRouteImport.update({
+  id: '/_dash',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashActivityRoute = DashActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashCreateRoute = DashCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashDashboardRoute = DashDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashProfileRoute = DashProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashSavedRoute = DashSavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashQuestionsIndexRoute = DashQuestionsIndexRouteImport.update({
+  id: '/questions/',
+  path: '/questions/',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashQuestionsIdRoute = DashQuestionsIdRouteImport.update({
+  id: '/questions/$id',
+  path: '/questions/$id',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashTeammatesIndexRoute = DashTeammatesIndexRouteImport.update({
+  id: '/teammates/',
+  path: '/teammates/',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashTeammatesNewRoute = DashTeammatesNewRouteImport.update({
+  id: '/teammates/new',
+  path: '/teammates/new',
+  getParentRoute: () => DashRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/signup': typeof SignupRoute
+  '/activity': typeof DashActivityRoute
+  '/create': typeof DashCreateRoute
+  '/dashboard': typeof DashDashboardRoute
+  '/profile': typeof DashProfileRoute
+  '/saved': typeof DashSavedRoute
+  '/questions/$id': typeof DashQuestionsIdRoute
+  '/teammates/new': typeof DashTeammatesNewRoute
+  '/questions/': typeof DashQuestionsIndexRoute
+  '/teammates/': typeof DashTeammatesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/signup': typeof SignupRoute
+  '/activity': typeof DashActivityRoute
+  '/create': typeof DashCreateRoute
+  '/dashboard': typeof DashDashboardRoute
+  '/profile': typeof DashProfileRoute
+  '/saved': typeof DashSavedRoute
+  '/questions/$id': typeof DashQuestionsIdRoute
+  '/teammates/new': typeof DashTeammatesNewRoute
+  '/questions': typeof DashQuestionsIndexRoute
+  '/teammates': typeof DashTeammatesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_dash': typeof DashRouteWithChildren
+  '/signup': typeof SignupRoute
+  '/_dash/activity': typeof DashActivityRoute
+  '/_dash/create': typeof DashCreateRoute
+  '/_dash/dashboard': typeof DashDashboardRoute
+  '/_dash/profile': typeof DashProfileRoute
+  '/_dash/saved': typeof DashSavedRoute
+  '/_dash/questions/$id': typeof DashQuestionsIdRoute
+  '/_dash/teammates/new': typeof DashTeammatesNewRoute
+  '/_dash/questions/': typeof DashQuestionsIndexRoute
+  '/_dash/teammates/': typeof DashTeammatesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/signup'
+    | '/activity'
+    | '/create'
+    | '/dashboard'
+    | '/profile'
+    | '/saved'
+    | '/questions/$id'
+    | '/teammates/new'
+    | '/questions/'
+    | '/teammates/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/signup'
+    | '/activity'
+    | '/create'
+    | '/dashboard'
+    | '/profile'
+    | '/saved'
+    | '/questions/$id'
+    | '/teammates/new'
+    | '/questions'
+    | '/teammates'
+  id:
+    | '__root__'
+    | '/'
+    | '/_dash'
+    | '/signup'
+    | '/_dash/activity'
+    | '/_dash/create'
+    | '/_dash/dashboard'
+    | '/_dash/profile'
+    | '/_dash/saved'
+    | '/_dash/questions/$id'
+    | '/_dash/teammates/new'
+    | '/_dash/questions/'
+    | '/_dash/teammates/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashRoute: typeof DashRouteWithChildren
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +181,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_dash': {
+      id: '/_dash'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof DashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_dash/activity': {
+      id: '/_dash/activity'
+      path: '/activity'
+      fullPath: '/activity'
+      preLoaderRoute: typeof DashActivityRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/create': {
+      id: '/_dash/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof DashCreateRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/dashboard': {
+      id: '/_dash/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashDashboardRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/profile': {
+      id: '/_dash/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof DashProfileRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/saved': {
+      id: '/_dash/saved'
+      path: '/saved'
+      fullPath: '/saved'
+      preLoaderRoute: typeof DashSavedRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/questions/': {
+      id: '/_dash/questions/'
+      path: '/questions'
+      fullPath: '/questions/'
+      preLoaderRoute: typeof DashQuestionsIndexRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/questions/$id': {
+      id: '/_dash/questions/$id'
+      path: '/questions/$id'
+      fullPath: '/questions/$id'
+      preLoaderRoute: typeof DashQuestionsIdRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/teammates/': {
+      id: '/_dash/teammates/'
+      path: '/teammates'
+      fullPath: '/teammates/'
+      preLoaderRoute: typeof DashTeammatesIndexRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/teammates/new': {
+      id: '/_dash/teammates/new'
+      path: '/teammates/new'
+      fullPath: '/teammates/new'
+      preLoaderRoute: typeof DashTeammatesNewRouteImport
+      parentRoute: typeof DashRoute
+    }
   }
 }
 
+interface DashRouteChildren {
+  DashActivityRoute: typeof DashActivityRoute
+  DashCreateRoute: typeof DashCreateRoute
+  DashDashboardRoute: typeof DashDashboardRoute
+  DashProfileRoute: typeof DashProfileRoute
+  DashSavedRoute: typeof DashSavedRoute
+  DashQuestionsIdRoute: typeof DashQuestionsIdRoute
+  DashTeammatesNewRoute: typeof DashTeammatesNewRoute
+  DashQuestionsIndexRoute: typeof DashQuestionsIndexRoute
+  DashTeammatesIndexRoute: typeof DashTeammatesIndexRoute
+}
+
+const DashRouteChildren: DashRouteChildren = {
+  DashActivityRoute: DashActivityRoute,
+  DashCreateRoute: DashCreateRoute,
+  DashDashboardRoute: DashDashboardRoute,
+  DashProfileRoute: DashProfileRoute,
+  DashSavedRoute: DashSavedRoute,
+  DashQuestionsIdRoute: DashQuestionsIdRoute,
+  DashTeammatesNewRoute: DashTeammatesNewRoute,
+  DashQuestionsIndexRoute: DashQuestionsIndexRoute,
+  DashTeammatesIndexRoute: DashTeammatesIndexRoute,
+}
+
+const DashRouteWithChildren = DashRoute._addFileChildren(DashRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashRoute: DashRouteWithChildren,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
