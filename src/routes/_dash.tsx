@@ -1,7 +1,7 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { SelectedAvatar } from "@/components/avatar-picker";
 import { Button } from "@/components/ui/button";
-import { PixelAvatar, PixelIcon } from "@/components/pixel";
+import { PixelIcon } from "@/components/pixel";
 
 export const Route = createFileRoute("/_dash")({ component: DashLayout });
 

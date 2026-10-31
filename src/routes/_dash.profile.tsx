@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { QuestionCard, Tag } from "@/components/cards";
-import { PixelAvatar, PixelIcon, PixelStars } from "@/components/pixel";
+import { PixelIcon, PixelStars } from "@/components/pixel";
 import { QUESTIONS } from "@/lib/data";
 import { SelectedAvatar } from "@/components/avatar-picker";
 
@@ -17,7 +17,7 @@ function Profile() {
       <aside className="space-y-6">
         <div className="pixel-card overflow-hidden">
           <div className="relative h-24 bg-navy"><PixelStars className="absolute right-4 top-4" /></div>
-          <div className="-mt-12 px-6 pb-6">
+          <div className="relative -mt-12 px-6 pb-6">
             <SelectedAvatar size={96} />
             <h1 className="mt-3 text-3xl font-bold">Aanya Rao</h1>
             <p className="text-muted-foreground">2nd year · Computer Science</p>
