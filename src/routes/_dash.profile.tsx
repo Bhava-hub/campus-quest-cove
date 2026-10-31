@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { QuestionCard, Tag } from "@/components/cards";
 import { PixelAvatar, PixelIcon, PixelStars } from "@/components/pixel";
 import { QUESTIONS } from "@/lib/data";
+import { SelectedAvatar } from "@/components/avatar-picker";
 
 export const Route = createFileRoute("/_dash/profile")({
   head: () => ({ meta: [{ title: "Profile — Campus Connect" }, { name: "description", content: "Your Campus Connect profile, skills and badges." }, { property: "og:title", content: "Profile — Campus Connect" }, { property: "og:description", content: "Skills, badges and contributions." }] }),
@@ -17,7 +18,7 @@ function Profile() {
         <div className="pixel-card overflow-hidden">
           <div className="relative h-24 bg-navy"><PixelStars className="absolute right-4 top-4" /></div>
           <div className="-mt-12 px-6 pb-6">
-            <PixelAvatar seed="Aanya Rao" size={96} />
+            <SelectedAvatar size={96} />
             <h1 className="mt-3 text-3xl font-bold">Aanya Rao</h1>
             <p className="text-muted-foreground">2nd year · Computer Science</p>
             <p className="mt-3 text-sm">Algorithms nerd, hackathon regular, always down to explain graph theory over chai.</p>
